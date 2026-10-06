@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Interaktif Review Trigonometri SMA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN for Interactive Wave Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- KaTeX CDN for Math Equations Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        },
+                        accent: {
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            purple: '#8b5cf6',
+                            indigo: '#6366f1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-3px);
+            border-color: rgba(2, 132, 199, 0.4);
+            box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.12);
+        }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            color: white;
+            box-shadow: 0 4px 12px 0 rgba(2, 132, 199, 0.3);
+        }
+
+        .finger-btn {
+            transition: all 0.2s ease;
+        }
+        .finger-btn:hover, .finger-btn.active {
+            background-color: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased bg-slate-50 text-slate-800">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+                    <i class="fa-solid fa-calculator text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-900 leading-tight">Trigo<span class="text-sky-600">Master</span></h1>
+                    <p class="text-xs text-slate-500">Modul Review & Penguatan Trigonometri SMA</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 text-xs font-semibold text-slate-600">
+                <a href="#tujuan" class="px-3 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Tujuan</a>
+                <a href="#warmup" class="px-3 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Warm-Up</a>
+                <a href="#koneksi" class="px-3 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Koneksi Nyata</a>
+                <a href="#materi" class="px-3 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Materi & Grafik</a>
+                <a href="#latihan" class="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold transition shadow-sm">Latihan Terbimbing</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Hero Section -->
+        <section class="glass-card p-6 md:p-8 relative overflow-hidden bg-gradient-to-br from-sky-50 via-indigo-50/50 to-slate-100 border-slate-200">
+            <div class="relative z-10 max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-arrows-rotate"></i> Review Sebelum Drill Soal
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                    Penguatan Konsep <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600">Trigonometri Lengkap</span>
+                </h2>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                    Mata pelajaran ini telah Anda pelajari sebelumnya. Modul ini dirancang khusus untuk memantapkan kembali ingatan, menghubungkan antar-konsep melalui simulasi visual interaktif, hingga Anda siap menaklukkan berbagai tipe drill soal.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#warmup" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition shadow-md shadow-sky-600/20 flex items-center gap-2">
+                        <i class="fa-solid fa-fire"></i> Mulai Warm-Up (8 Soal)
+                    </a>
+                    <a href="#materi" class="px-5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition shadow-sm flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-sky-600"></i> Langsung ke Ringkasan Materi
+                    </a>
+                </div>
+            </div>
+            <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none text-sky-700">
+                <i class="fa-solid fa-shapes text-[240px]"></i>
+            </div>
+        </section>
+
+        <!-- SECTION 1: TUJUAN PEMBELAJARAN -->
+        <section id="tujuan" class="space-y-4">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-bullseye text-sky-600"></i> 1. Tujuan Review & Target Capaian
+                </h3>
+                <p class="text-xs text-slate-500">Target yang akan dicapai setelah menyelesaikan modul review interaktif ini:</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card p-4 border-t-4 border-t-sky-500 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-sm">1</div>
+                    <h4 class="font-bold text-slate-800 text-sm">Sin, Cos, Tan & Kebalikan</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Mengingat kembali rasio segitiga siku-siku ($\text{Demi, Sami, Desa}$) dan kebalikannya ($\text{Csc, Sec, Cot}$).</p>
+                </div>
+
+                <div class="glass-card p-4 border-t-4 border-t-indigo-500 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">2</div>
+                    <h4 class="font-bold text-slate-800 text-sm">Sudut Istimewa, Kuadran & Perubahan Nama</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Menguasai trik jari tangan $½\sqrt{n}$, tanda kuadran (ASTC), serta aturan perubahan nama fungsi relasi sudut.</p>
+                </div>
+
+                <div class="glass-card p-4 border-t-4 border-t-purple-500 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-sm">3</div>
+                    <h4 class="font-bold text-slate-800 text-sm">Identitas Trigonometri</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Memahami asal-usul dan membuktikan identitas Pythagoras serta identitas rasio secara matematis.</p>
+                </div>
+
+                <div class="glass-card p-4 border-t-4 border-t-emerald-500 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">4</div>
+                    <h4 class="font-bold text-slate-800 text-sm">Penjumlahan & Selisih Sudut</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Menerapkan rumus $\sin(A\pm B)$, $\cos(A\pm B)$, dan $\tan(A\pm B)$ pada perhitungan sudut non-istimewa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: WARM-UP (8 SOAL BERBEDA) -->
+        <section id="warmup" class="space-y-4">
+            <div class="border-l-4 border-amber-500 pl-4 flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-amber-500"></i> 2. Warm-Up Penyegaran (8 Soal Berbeda)
+                    </h3>
+                    <p class="text-xs text-slate-500">Uji ingatan singkat Anda sebelum masuk ke penjelasan materi lengkap. Klik opsi untuk memeriksa jawaban secara instan!</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-slate-500">Skor Warm-Up:</span>
+                    <div id="warmupScore" class="text-lg font-bold text-amber-600 font-mono">0 / 8</div>
+                </div>
+            </div>
+
+            <!-- Warmup Grid 8 Questions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="warmupGrid">
+                <!-- Warmup Cards injected via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: KONEKSI NYATA -->
+        <section id="koneksi" class="space-y-4">
+            <div class="border-l-4 border-emerald-500 pl-4">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-earth-americas text-emerald-600"></i> 3. Koneksi Nyata (Mengapa Trigonometri Penting?)
+                </h3>
+                <p class="text-xs text-slate-500">Trigonometri bukan sekadar hafalan rumus, melainkan bahasa matematis untuk fenomena berulang dan pengukuran tak langsung di dunia nyata.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card p-5 glass-card-hover border-t-4 border-t-sky-500">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Arsitektur & Teknik</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Menghitung tinggi gedung, kemiringan atap, dan gaya jembatan gantung menggunakan klinometer dan rasio $\tan \theta$.</p>
+                </div>
+
+                <div class="glass-card p-5 glass-card-hover border-t-4 border-t-purple-500">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Musik & Sinyal Audio</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Suara nada musik dan gelombang radio Wi-Fi dibentuk dari gabungan gelombang sinusoidal $y = A \sin(\omega t)$.</p>
+                </div>
+
+                <div class="glass-card p-5 glass-card-hover border-t-4 border-t-amber-500">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-satellite"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Navigasi & GPS Satelit</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Sistem peta GPS menggunakan metode triangulasi sudut lokasi satelit terhadap penerima di bumi.</p>
+                </div>
+
+                <div class="glass-card p-5 glass-card-hover border-t-4 border-t-rose-500">
+                    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Fisika & Vektor</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Proyeksi komponen gaya $F_x = F \cos \theta$ dan $F_y = F \sin \theta$ pada gerak parabola dan listrik arus bolak-balik (AC).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MATERI LENGKAP & VISUALISASI INTERAKTIF -->
+        <section id="materi" class="space-y-8">
+            <div class="border-l-4 border-indigo-600 pl-4">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark text-indigo-600"></i> 4. Ringkasan Materi Lengkap, Visualisasi & Contoh Soal
+                </h3>
+                <p class="text-xs text-slate-500">Simak penjelasan konsep secara mendalam yang dilengkapi dengan alat bantu simulasi visual interaktif.</p>
+            </div>
+
+            <!-- SUB-MATERI 1: RASIO TRIGONOMETRI & KEBALIKAN -->
+            <div class="glass-card p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-700 font-bold text-xs">Materi 1</span>
+                    <h4 class="font-bold text-slate-800 text-base">Rasio Segitiga Siku-Siku & Kebalikan ($\sin, \cos, \tan, \csc, \sec, \cot$)</h4>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <!-- Left Column: Dynamic Triangle / Unit Circle Calculator -->
+                    <div class="lg:col-span-6 bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h5 class="font-bold text-xs uppercase text-slate-500 tracking-wider flex justify-between items-center">
+                            <span>Simulator Lingkaran Satuan & Segitiga</span>
+                            <span id="unitAngleText" class="text-sky-600 font-mono font-bold">45°</span>
+                        </h5>
+
+                        <div class="flex justify-center bg-white p-3 rounded-xl border border-slate-200">
+                            <canvas id="canvasUnitCircle" width="280" height="280" class="max-w-full h-auto cursor-pointer"></canvas>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="angleInputSlider" class="text-xs font-semibold text-slate-700 flex justify-between">
+                                <span>Geser Sudut Acuan ($\theta$):</span>
+                                <span id="angleRadText" class="text-slate-500 font-mono">0.25π rad</span>
+                            </label>
+                            <input type="range" id="angleInputSlider" min="0" max="360" value="45" class="w-full accent-sky-600 bg-slate-200 h-2 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Formulas & Live Values -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <!-- Mnemonic Card -->
+                        <div class="p-3.5 bg-sky-50 border border-sky-200 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-sky-900 block"><i class="fa-solid fa-lightbulb text-amber-500"></i> Jembatan Keledai Hafalan Rasio:</span>
+                            <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                                <div class="bg-white p-2 rounded border border-sky-100">
+                                    <strong class="text-rose-600 block">SIN</strong>
+                                    <span>Demi (Depan/Miring)</span>
+                                </div>
+                                <div class="bg-white p-2 rounded border border-sky-100">
+                                    <strong class="text-emerald-600 block">COS</strong>
+                                    <span>Sami (Samping/Miring)</span>
+                                </div>
+                                <div class="bg-white p-2 rounded border border-sky-100">
+                                    <strong class="text-amber-600 block">TAN</strong>
+                                    <span>Desa (Depan/Samping)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reciprocal Definition -->
+                        <div class="grid grid-cols-3 gap-2 font-mono text-xs text-center">
+                            <div class="p-2.5 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <span class="text-slate-500 block text-[10px]">Kebalikan Sin</span>
+                                <strong class="text-rose-600">csc θ = 1 / sin θ</strong>
+                                <div id="liveCsc" class="text-slate-800 font-bold mt-1">1.414</div>
+                            </div>
+                            <div class="p-2.5 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <span class="text-slate-500 block text-[10px]">Kebalikan Cos</span>
+                                <strong class="text-emerald-600">sec θ = 1 / cos θ</strong>
+                                <div id="liveSec" class="text-slate-800 font-bold mt-1">1.414</div>
+                            </div>
+                            <div class="p-2.5 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <span class="text-slate-500 block text-[10px]">Kebalikan Tan</span>
+                                <strong class="text-amber-600">cot θ = 1 / tan θ</strong>
+                                <div id="liveCot" class="text-slate-800 font-bold mt-1">1.000</div>
+                            </div>
+                        </div>
+
+                        <!-- Contoh Soal Materi 1 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                            <span class="font-bold text-sky-800 block flex items-center gap-1">
+                                <i class="fa-solid fa-file-pen"></i> Contoh Soal & Pembahasan 1:
+                            </span>
+                            <p class="text-slate-700">Diketahui segitiga siku-siku dengan panjang sisi depan $a = 3$ dan sisi samping $b = 4$. Tentukan nilai $\sin \theta$ dan $\sec \theta$!</p>
+                            <div class="p-2.5 bg-white rounded border border-slate-200 font-mono leading-relaxed">
+                                <strong>Penyelesaian:</strong><br>
+                                1. Hitung Sisi Miring ($c$): $c = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5$.<br>
+                                2. $\sin \theta = \frac{\text{Depan}}{\text{Miring}} = \frac{3}{5} = 0{,}6$.<br>
+                                3. $\cos \theta = \frac{\text{Samping}}{\text{Miring}} = \frac{4}{5} \implies \sec \theta = \frac{1}{\cos \theta} = \frac{5}{4} = 1{,}25$.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-MATERI 2: SUDUT ISTIMEWA, KUADRAN & ATURAN PERUBAHAN NAMA FUNGSI -->
+            <div class="glass-card p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-700 font-bold text-xs">Materi 2</span>
+                    <h4 class="font-bold text-slate-800 text-base">Sudut Istimewa, Aturan Kuadran (ASTC) & Aturan Perubahan Nama Fungsi</h4>
+                </div>
+
+                <!-- Part 1: Finger Trick & Quadrants -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Left: Finger Trick Tool -->
+                    <div class="lg:col-span-6 bg-white p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h5 class="font-bold text-xs uppercase text-purple-700 tracking-wider">
+                            1. Trik Jari Tangan: Rumus $½\sqrt{n}$
+                        </h5>
+                        <p class="text-xs text-slate-600">Pilih salah satu jari di bawah untuk melihat pola nomor nilai $n$:</p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="selectFinger(0, 0, this)" class="finger-btn flex-1 p-2.5 rounded-lg border border-slate-200 text-xs font-mono font-semibold">Jempol<br>(0°)</button>
+                            <button onclick="selectFinger(30, 1, this)" class="finger-btn flex-1 p-2.5 rounded-lg border border-slate-200 text-xs font-mono font-semibold">Telunjuk<br>(30°)</button>
+                            <button onclick="selectFinger(45, 2, this)" class="finger-btn active flex-1 p-2.5 rounded-lg border border-slate-200 text-xs font-mono font-semibold">Tengah<br>(45°)</button>
+                            <button onclick="selectFinger(60, 3, this)" class="finger-btn flex-1 p-2.5 rounded-lg border border-slate-200 text-xs font-mono font-semibold">Manis<br>(60°)</button>
+                            <button onclick="selectFinger(90, 4, this)" class="finger-btn flex-1 p-2.5 rounded-lg border border-slate-200 text-xs font-mono font-semibold">Kelingking<br>(90°)</button>
+                        </div>
+
+                        <div class="p-3 bg-purple-50 border border-purple-200 rounded-xl font-mono text-xs space-y-1">
+                            <div id="fingerSinResult" class="text-rose-600 font-bold">sin(45°) = ½√2</div>
+                            <div id="fingerCosResult" class="text-emerald-700 font-bold">cos(45°) = ½√2</div>
+                            <div id="fingerTanResult" class="text-amber-600 font-bold">tan(45°) = 1</div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quadrants ASTC Rule -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-xs">
+                            <span class="font-bold text-slate-800 block">2. Aturan Tanda Kuadran: "SEMUA - SIN - TAN - COS" (ASTC)</span>
+                            <div class="grid grid-cols-2 gap-2 text-center font-mono">
+                                <div class="p-2 bg-emerald-50 border border-emerald-200 rounded">
+                                    <strong class="text-emerald-700 block">Kuadran II (90°-180°)</strong>
+                                    <span>Hanya <strong class="text-rose-600">SIN</strong> & csc (+)</span>
+                                </div>
+                                <div class="p-2 bg-sky-50 border border-sky-200 rounded">
+                                    <strong class="text-sky-700 block">Kuadran I (0°-90°)</strong>
+                                    <span><strong class="text-emerald-600">SEMUA</strong> Positif (+)</span>
+                                </div>
+                                <div class="p-2 bg-amber-50 border border-amber-200 rounded">
+                                    <strong class="text-amber-700 block">Kuadran III (180°-270°)</strong>
+                                    <span>Hanya <strong class="text-amber-600">TAN</strong> & cot (+)</span>
+                                </div>
+                                <div class="p-2 bg-indigo-50 border border-indigo-200 rounded">
+                                    <strong class="text-indigo-700 block">Kuadran IV (270°-360°)</strong>
+                                    <span>Hanya <strong class="text-indigo-600">COS</strong> & sec (+)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Aturan Perubahan Nama Fungsi (NEW & EXPANDED) -->
+                <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-200 space-y-5">
+                    <div class="border-b border-indigo-200 pb-3">
+                        <h5 class="font-bold text-sm text-indigo-900 flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-left-right text-indigo-600"></i> 3. Aturan Perubahan Nama Fungsi Relasi Sudut
+                        </h5>
+                        <p class="text-xs text-indigo-700 mt-1">
+                            Ketika Anda mengubah sudut tumpul/relatif menjadi sudut lancip ($\alpha$), ada dua patokan sumbu yang bisa digunakan:
+                        </p>
+                    </div>
+
+                    <!-- Rules Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Rule A: Sumbu Vertikal -->
+                        <div class="p-4 bg-white rounded-xl border-2 border-rose-300 space-y-3 shadow-sm">
+                            <div class="flex items-center justify-between border-b border-rose-100 pb-2">
+                                <span class="font-bold text-xs text-rose-800 uppercase tracking-wide">A. Patokan Sumbu Vertikal ($90^\circ$ dan $270^\circ$)</span>
+                                <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-700 text-[10px] font-extrabold uppercase">NAMA BERUBAH</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Jika menggunakan sudut patokan $90^\circ \pm \alpha$ atau $270^\circ \pm \alpha$, maka nama fungsi <strong class="text-rose-600">WAJIB BERUBAH</strong> ke fungsi komplementernya:
+                            </p>
+                            <div class="p-2.5 bg-rose-50/70 rounded-lg text-xs font-mono font-bold text-slate-800 space-y-1.5 text-center">
+                                <div>$\sin \longleftrightarrow \cos$</div>
+                                <div>$\tan \longleftrightarrow \cot$</div>
+                                <div>$\sec \longleftrightarrow \csc$</div>
+                            </div>
+                        </div>
+
+                        <!-- Rule B: Sumbu Horizontal -->
+                        <div class="p-4 bg-white rounded-xl border-2 border-emerald-300 space-y-3 shadow-sm">
+                            <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
+                                <span class="font-bold text-xs text-emerald-800 uppercase tracking-wide">B. Patokan Sumbu Horizontal ($180^\circ$ dan $360^\circ$)</span>
+                                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 text-[10px] font-extrabold uppercase">NAMA TETAP</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Jika menggunakan sudut patokan $180^\circ \pm \alpha$ atau $360^\circ - \alpha$ (atau $-\alpha$), nama fungsi <strong class="text-emerald-600">TETAP / TIDAK BERUBAH</strong>:
+                            </p>
+                            <div class="p-2.5 bg-emerald-50/70 rounded-lg text-xs font-mono font-bold text-slate-800 space-y-1.5 text-center">
+                                <div>$\sin \longrightarrow \sin$</div>
+                                <div>$\cos \longrightarrow \cos$</div>
+                                <div>$\tan \longrightarrow \tan$ &nbsp; (dst.)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Guide Card -->
+                    <div class="p-4 bg-white rounded-xl border border-indigo-200 text-xs space-y-3">
+                        <strong class="text-indigo-900 block font-bold text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-indigo-600"></i> Cara Menggunakannya Secara Rinci (3 Langkah Emas):
+                        </strong>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] inline-flex items-center justify-center mb-1">1</span>
+                                <strong class="block text-slate-800">Tentukan Kuadran & Tanda (+/-)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">Lihat posisi sudut awal. Tentukan apakah nilai bernilai positif atau negatif berdasarkan <strong>FUNGSI ASLI</strong> (Aturan ASTC).</p>
+                            </div>
+
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] inline-flex items-center justify-center mb-1">2</span>
+                                <strong class="block text-slate-800">Pilih Patokan & Cek Nama</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    - Jika pakai $180^\circ$ / $360^\circ$ $\rightarrow$ Nama Tetap.<br>
+                                    - Jika pakai $90^\circ$ / $270^\circ$ $\rightarrow$ Ubah Nama Fungsi.
+                                </p>
+                            </div>
+
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                                <span class="w-5 h-5 rounded-full bg-indigo-600 text-white font-bold text-[10px] inline-flex items-center justify-center mb-1">3</span>
+                                <strong class="block text-slate-800">Hitung Nilai Sudut Lancip ($\alpha$)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">Hitung hasil nilai fungsi sudut lancip $\alpha$ gabungkan dengan tanda (+/-) yang sudah didapat pada Langkah 1.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perbandingan Contoh Soal Lengkap -->
+                    <div class="p-4 bg-white rounded-xl border border-indigo-200 text-xs space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                            <span class="font-bold text-indigo-900 flex items-center gap-2">
+                                <i class="fa-solid fa-calculator text-indigo-600"></i> Contoh Lengkap & Perbandingan Dua Patokan:
+                            </span>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">Catatan Penting: Tanda (+/-) selalu mengikuti fungsi ASAL</span>
+                        </div>
+
+                        <!-- Example 1 -->
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <strong class="text-slate-800 block">Contoh 1: Hitung nilai dari $\sin(120^\circ)$</strong>
+                            <p class="text-slate-600">Sudut $120^\circ$ ada di <strong>Kuadran II</strong>, di mana fungsi $\sin$ bernilai <strong class="text-emerald-600">POSITIF (+)</strong>.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-[11px]">
+                                <div class="p-2.5 bg-emerald-50/80 border border-emerald-200 rounded-lg">
+                                    <strong class="text-emerald-800 block font-sans text-xs">Cara A: Patokan Sumbu Horizontal ($180^\circ$) $\rightarrow$ NAMA TETAP</strong>
+                                    $$\begin{aligned}
+                                    \sin(120^\circ) &= +\sin(180^\circ - 60^\circ) \\
+                                    &= +\sin(60^\circ) \\
+                                    &= \mathbf{\frac{1}{2}\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+
+                                <div class="p-2.5 bg-rose-50/80 border border-rose-200 rounded-lg">
+                                    <strong class="text-rose-800 block font-sans text-xs">Cara B: Patokan Sumbu Vertikal ($90^\circ$) $\rightarrow$ NAMA BERUBAH ($\sin \to \cos$)</strong>
+                                    $$\begin{aligned}
+                                    \sin(120^\circ) &= +\cos(90^\circ + 30^\circ) \\
+                                    &= +\cos(30^\circ) \\
+                                    &= \mathbf{\frac{1}{2}\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Example 2 -->
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <strong class="text-slate-800 block">Contoh 2: Hitung nilai dari $\cos(210^\circ)$</strong>
+                            <p class="text-slate-600">Sudut $210^\circ$ ada di <strong>Kuadran III</strong>, di mana fungsi $\cos$ bernilai <strong class="text-rose-600">NEGATIF (-)</strong>.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-[11px]">
+                                <div class="p-2.5 bg-emerald-50/80 border border-emerald-200 rounded-lg">
+                                    <strong class="text-emerald-800 block font-sans text-xs">Cara A: Patokan $180^\circ$ (NAMA TETAP)</strong>
+                                    $$\begin{aligned}
+                                    \cos(210^\circ) &= -\cos(180^\circ + 30^\circ) \\
+                                    &= -\cos(30^\circ) \\
+                                    &= \mathbf{-\frac{1}{2}\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+
+                                <div class="p-2.5 bg-rose-50/80 border border-rose-200 rounded-lg">
+                                    <strong class="text-rose-800 block font-sans text-xs">Cara B: Patokan $270^\circ$ (NAMA BERUBAH: $\cos \to \sin$)</strong>
+                                    $$\begin{aligned}
+                                    \cos(210^\circ) &= -\sin(270^\circ - 60^\circ) \\
+                                    &= -\sin(60^\circ) \\
+                                    &= \mathbf{-\frac{1}{2}\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Example 3 -->
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <strong class="text-slate-800 block">Contoh 3: Hitung nilai dari $\tan(300^\circ)$</strong>
+                            <p class="text-slate-600">Sudut $300^\circ$ ada di <strong>Kuadran IV</strong>, di mana fungsi $\tan$ bernilai <strong class="text-rose-600">NEGATIF (-)</strong>.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-[11px]">
+                                <div class="p-2.5 bg-emerald-50/80 border border-emerald-200 rounded-lg">
+                                    <strong class="text-emerald-800 block font-sans text-xs">Cara A: Patokan $360^\circ$ (NAMA TETAP)</strong>
+                                    $$\begin{aligned}
+                                    \tan(300^\circ) &= -\tan(360^\circ - 60^\circ) \\
+                                    &= -\tan(60^\circ) \\
+                                    &= \mathbf{-\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+
+                                <div class="p-2.5 bg-rose-50/80 border border-rose-200 rounded-lg">
+                                    <strong class="text-rose-800 block font-sans text-xs">Cara B: Patokan $270^\circ$ (NAMA BERUBAH: $\tan \to \cot$)</strong>
+                                    $$\begin{aligned}
+                                    \tan(300^\circ) &= -\cot(270^\circ + 30^\circ) \\
+                                    &= -\cot(30^\circ) \\
+                                    &= \mathbf{-\sqrt{3}}
+                                    \end{aligned}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-MATERI 3: GRAFIK FUNGSI TRIGONOMETRI -->
+            <div class="glass-card p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-700 font-bold text-xs">Materi 3</span>
+                    <h4 class="font-bold text-slate-800 text-base">Grafik Gelombang Fungsi Trigonometri Interaktif ($\sin x, \cos x, \tan x$)</h4>
+                </div>
+
+                <!-- Graph Canvas & Controls -->
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs">
+                        <div class="flex flex-wrap gap-3">
+                            <label class="inline-flex items-center gap-2 cursor-pointer font-semibold text-rose-600">
+                                <input type="checkbox" id="chkSin" checked class="accent-rose-600"> y = sin(x)
+                            </label>
+                            <label class="inline-flex items-center gap-2 cursor-pointer font-semibold text-emerald-700">
+                                <input type="checkbox" id="chkCos" checked class="accent-emerald-600"> y = cos(x)
+                            </label>
+                            <label class="inline-flex items-center gap-2 cursor-pointer font-semibold text-amber-600">
+                                <input type="checkbox" id="chkTan" class="accent-amber-600"> y = tan(x)
+                            </label>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>Amplitudo (A): <strong id="ampDisplay" class="text-sky-600 font-mono">1</strong></span>
+                            <input type="range" id="sliderAmp" min="0.5" max="3" step="0.5" value="1" class="w-24 accent-sky-600">
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 h-[320px] w-full">
+                        <canvas id="chartTrig"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-MATERI 4: IDENTITAS TRIGONOMETRI & PEMBUKTIAN -->
+            <div class="glass-card p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-xs">Materi 4</span>
+                    <h4 class="font-bold text-slate-800 text-base">Identitas Trigonometri Utama & Langkah Pembuktian</h4>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 font-mono text-xs">
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-sky-700 block text-sm">Identitas 1 (Utama)</strong>
+                        <div class="p-2 bg-sky-50 text-sky-900 rounded font-bold text-center">$\sin^2 x + \cos^2 x = 1$</div>
+                        <p class="text-slate-600 font-sans leading-relaxed">Berasal dari rumus Pythagoras segitiga siku-siku $a^2 + b^2 = c^2$ dibagi dengan $c^2$.</p>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-emerald-700 block text-sm">Identitas 2 (Secan)</strong>
+                        <div class="p-2 bg-emerald-50 text-emerald-900 rounded font-bold text-center">$1 + \tan^2 x = \sec^2 x$</div>
+                        <p class="text-slate-600 font-sans leading-relaxed">Diturunkan dari pembagian kedua ruas $\sin^2 x + \cos^2 x = 1$ dengan $\cos^2 x$.</p>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-purple-700 block text-sm">Identitas 3 (Cosecan)</strong>
+                        <div class="p-2 bg-purple-50 text-purple-900 rounded font-bold text-center">$1 + \cot^2 x = \csc^2 x$</div>
+                        <p class="text-slate-600 font-sans leading-relaxed">Diturunkan dari pembagian kedua ruas $\sin^2 x + \cos^2 x = 1$ dengan $\sin^2 x$.</p>
+                    </div>
+                </div>
+
+                <!-- Contoh Soal Materi 4 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                    <span class="font-bold text-emerald-800 block flex items-center gap-1">
+                        <i class="fa-solid fa-file-pen"></i> Contoh Soal & Pembahasan Pembuktian Identitas:
+                    </span>
+                    <p class="text-slate-700">Buktikan bahwa $\tan x + \cot x = \sec x \cdot \csc x$!</p>
+                    <div class="p-3 bg-white rounded border border-slate-200 font-mono leading-relaxed space-y-1">
+                        <div><strong>Ubah Ruas Kiri (LHS):</strong></div>
+                        <div>$\text{LHS} = \frac{\sin x}{\cos x} + \frac{\cos x}{\sin x}$</div>
+                        <div>Samakan penyebut: $= \frac{\sin^2 x + \cos^2 x}{\cos x \cdot \sin x}$</div>
+                        <div>Gunakan identitas $\sin^2 x + \cos^2 x = 1$: $= \frac{1}{\cos x \cdot \sin x}$</div>
+                        <div>Pisah pecahan: $= \left(\frac{1}{\cos x}\right) \cdot \left(\frac{1}{\sin x}\right) = \sec x \cdot \csc x = \text{RHS}$ <strong class="text-emerald-600">(TERBUKTI)</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-MATERI 5: PENJUMLAHAN & SELISIH SUDUT -->
+            <div class="glass-card p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+                    <span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-700 font-bold text-xs">Materi 5</span>
+                    <h4 class="font-bold text-slate-800 text-base">Rumus Penjumlahan & Selisih / Pengurangan Sudut</h4>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-rose-600 block text-sm">Sinus Penjumlahan & Selisih</strong>
+                        <div class="p-2.5 bg-rose-50 text-rose-900 rounded font-semibold space-y-1">
+                            <div>$\sin(A + B) = \sin A \cos B + \cos A \sin B$</div>
+                            <div>$\sin(A - B) = \sin A \cos B - \cos A \sin B$</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-emerald-700 block text-sm">Cosinus Penjumlahan & Selisih</strong>
+                        <div class="p-2.5 bg-emerald-50 text-emerald-900 rounded font-semibold space-y-1">
+                            <div>$\cos(A + B) = \cos A \cos B - \sin A \sin B$</div>
+                            <div>$\cos(A - B) = \cos A \cos B + \sin A \sin B$</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <strong class="text-amber-700 block text-sm">Tangen Penjumlahan & Selisih</strong>
+                        <div class="p-2.5 bg-amber-50 text-amber-900 rounded font-semibold space-y-1">
+                            <div>$\tan(A + B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}$</div>
+                            <div>$\tan(A - B) = \frac{\tan A - \tan B}{1 + \tan A \tan B}$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Soal Materi 5 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                    <span class="font-bold text-rose-800 block flex items-center gap-1">
+                        <i class="fa-solid fa-file-pen"></i> Contoh Soal & Pembahasan Penjumlahan Sudut:
+                    </span>
+                    <p class="text-slate-700">Hitung nilai eksak dari $\sin(75^\circ)$ dan $\cos(15^\circ)$ tanpa menggunakan kalkulator!</p>
+                    <div class="p-3 bg-white rounded border border-slate-200 font-mono leading-relaxed space-y-2">
+                        <div>
+                            <strong>1. Menghitung $\sin(75^\circ) = \sin(45^\circ + 30^\circ)$:</strong><br>
+                            $= \sin(45^\circ)\cos(30^\circ) + \cos(45^\circ)\sin(30^\circ)$<br>
+                            $= \left(\frac{1}{2}\sqrt{2}\right)\left(\frac{1}{2}\sqrt{3}\right) + \left(\frac{1}{2}\sqrt{2}\right)\left(\frac{1}{2}\right) = \frac{1}{4}\sqrt{6} + \frac{1}{4}\sqrt{2} = \mathbf{\frac{1}{4}(\sqrt{6} + \sqrt{2})}$.
+                        </div>
+                        <div class="pt-2 border-t border-slate-100">
+                            <strong>2. Menghitung $\cos(15^\circ) = \cos(45^\circ - 30^\circ)$:</strong><br>
+                            $= \cos(45^\circ)\cos(30^\circ) + \sin(45^\circ)\sin(30^\circ)$<br>
+                            $= \left(\frac{1}{2}\sqrt{2}\right)\left(\frac{1}{2}\sqrt{3}\right) + \left(\frac{1}{2}\sqrt{2}\right)\left(\frac{1}{2}\right) = \mathbf{\frac{1}{4}(\sqrt{6} + \sqrt{2})}$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LATIHAN SOAL TERBIMBING -->
+        <section id="latihan" class="space-y-4">
+            <div class="border-l-4 border-amber-500 pl-4">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-amber-500"></i> 5. Latihan Soal Terbimbing (Guided Practice)
+                </h3>
+                <p class="text-xs text-slate-500">Gunakan petunjuk bertahap (*Step-by-Step Hint*) untuk menyelesaikan setiap soal secara mandiri!</p>
+            </div>
+
+            <div class="glass-card p-6 space-y-6">
+                <!-- Guided Quiz Container -->
+                <div id="guidedPracticeContainer" class="space-y-6">
+                    <!-- Rendered dynamically by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-6 text-xs text-slate-500 border-t border-slate-200">
+            <p>© 2026 Modul Interaktif Review Trigonometri SMA. Dirancang untuk persiapan penguatan materi sebelum drill soal.</p>
+        </footer>
+
+    </main>
+
+    <!-- JAVASCRIPT CODE -->
+    <script>
+        
+        // 1. WARM-UP QUESTIONS (8 DIFFERENT QUESTIONS)
+        const warmupData = [
+            {
+                id: 1,
+                q: "Jika segitiga siku-siku memiliki alas $b = 6\\text{ cm}$ dan tinggi $a = 8\\text{ cm}$, berapakah panjang sisi miring $c$?",
+                opts: ["A. 9 cm", "B. 10 cm", "C. 12 cm", "D. 14 cm"],
+                ans: 1,
+                exp: "$c = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\text{ cm}$."
+            },
+            {
+                id: 2,
+                q: "Di kuadran manakah fungsi $\\sin \\theta$ bernilai positif (+), tetapi $\\cos \\theta$ bernilai negatif (-)?",
+                opts: ["A. Kuadran I", "B. Kuadran II", "C. Kuadran III", "D. Kuadran IV"],
+                ans: 1,
+                exp: "Berdasarkan jembatan keledai ASTC, Kuadran II hanya melegalkan Sinus bernilai positif."
+            },
+            {
+                id: 3,
+                q: "Berapakah nilai dari $\\tan(45^\\circ)$?",
+                opts: ["A. 0", "B. ½√2", "C. 1", "D. √3"],
+                ans: 2,
+                exp: "$\\tan(45^\\circ) = \\frac{\\sin 45^\\circ}{\\cos 45^\\circ} = \\frac{\\frac{1}{2}\\sqrt{2}}{\\frac{1}{2}\\sqrt{2}} = 1$."
+            },
+            {
+                id: 4,
+                q: "Kebalikan dari fungsi cosinus (1 / cos θ) dikenal dengan nama...",
+                opts: ["A. Cosecan (csc)", "B. Secan (sec)", "C. Cotangen (cot)", "D. Tangen (tan)"],
+                ans: 1,
+                exp: "Secan (sec θ) merupakan kebalikan dari Cosinus (1 / cos θ)."
+            },
+            {
+                id: 5,
+                q: "Identitas Pythagoras dasar trigonometri menyatakan bahwa $\\sin^2 x + \\cos^2 x =$ ...",
+                opts: ["A. 0", "B. 1", "C. 2", "D. \\tan^2 x"],
+                ans: 1,
+                exp: "Persamaan $\\sin^2 x + \\cos^2 x = 1$ adalah identitas Pythagoras utama."
+            },
+            {
+                id: 6,
+                q: "Rumus penjabaran untuk $\\cos(A + B)$ adalah...",
+                opts: [
+                    "A. $\\cos A \\cos B - \\sin A \\sin B$",
+                    "B. $\\cos A \\cos B + \\sin A \\sin B$",
+                    "C. $\\sin A \\cos B + \\cos A \\sin B$",
+                    "D. $\\sin A \\cos B - \\cos A \\sin B$"
+                ],
+                ans: 0,
+                exp: "Ingat pola Cosinus Penjumlahan: Tanda berubah dari $(+)$ menjadi $(-)$, yaitu $\\cos A \\cos B - \\sin A \\sin B$."
+            },
+            {
+                id: 7,
+                q: "Nilai dari $\\sin(300^\\circ)$ yang berada di Kuadran IV adalah...",
+                opts: ["A. ½", "B. -½", "C. ½√3", "D. -½√3"],
+                ans: 3,
+                exp: "$\\sin(300^\\circ) = \\sin(360^\\circ - 60^\\circ) = -\\sin(60^\\circ) = -\\frac{1}{2}\\sqrt{3}$."
+            },
+            {
+                id: 8,
+                q: "Bentuk sederhana dari pecahan $\\frac{\\sin x}{\\tan x}$ adalah...",
+                opts: ["A. $\\cos x$", "B. $\\sin x$", "C. $\\sec x$", "D. $1$"],
+                ans: 0,
+                exp: "$\\frac{\\sin x}{\\tan x} = \\frac{\\sin x}{\\frac{\\sin x}{\\cos x}} = \\sin x \\cdot \\frac{\\cos x}{\\sin x} = \\cos x$."
+            }
+        ];
+
+        let warmupScore = 0;
+        const warmupAnswered = new Array(8).fill(false);
+
+        function renderWarmup() {
+            const grid = document.getElementById('warmupGrid');
+            grid.innerHTML = warmupData.map((item, idx) => `
+                <div class="glass-card p-4 space-y-3 border-slate-200">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Soal ${idx + 1}</span>
+                    </div>
+                    <p class="text-xs font-medium text-slate-800 leading-relaxed">${item.q}</p>
+                    <div class="grid grid-cols-2 gap-2" id="warmupOpts_${idx}">
+                        ${item.opts.map((opt, oIdx) => `
+                            <button onclick="checkWarmup(${idx}, ${oIdx})" class="text-left p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-[11px] font-semibold text-slate-700 transition">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="warmupExp_${idx}" class="hidden p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 font-mono">
+                        ${item.exp}
+                    </div>
+                </div>
+            `).join('');
+
+            renderMathInElement(grid, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        function checkWarmup(qIdx, selectedOpt) {
+            if (warmupAnswered[qIdx]) return;
+            warmupAnswered[qIdx] = true;
+
+            const item = warmupData[qIdx];
+            const optsContainer = document.getElementById(`warmupOpts_${qIdx}`);
+            const buttons = optsContainer.querySelectorAll('button');
+
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === item.ans) {
+                    btn.className = "text-left p-2 rounded-lg border border-emerald-500 bg-emerald-50 font-bold text-emerald-800 text-[11px]";
+                } else if (idx === selectedOpt) {
+                    btn.className = "text-left p-2 rounded-lg border border-rose-500 bg-rose-50 font-bold text-rose-800 text-[11px]";
+                }
+            });
+
+            if (selectedOpt === item.ans) {
+                warmupScore += 1;
+                document.getElementById('warmupScore').textContent = `${warmupScore} / 8`;
+            }
+
+            const expBox = document.getElementById(`warmupExp_${qIdx}`);
+            expBox.classList.remove('hidden');
+            renderMathInElement(expBox, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        let currentAngle = 45;
+
+        function initUnitCircleCanvas() {
+            const slider = document.getElementById('angleInputSlider');
+            slider.addEventListener('input', (e) => {
+                currentAngle = parseFloat(e.target.value);
+                drawUnitCircle();
+            });
+            drawUnitCircle();
+        }
+
+        function drawUnitCircle() {
+            const canvas = document.getElementById('canvasUnitCircle');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+            const r = 100;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Sumbu X dan Y
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(10, cy); ctx.lineTo(w - 10, cy);
+            ctx.moveTo(cx, 10); ctx.lineTo(cx, h - 10);
+            ctx.stroke();
+
+            // Lingkaran
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            const rad = (currentAngle * Math.PI) / 180;
+            const px = cx + r * Math.cos(rad);
+            const py = cy - r * Math.sin(rad);
+
+            // Garis Alas (cos)
+            ctx.strokeStyle = '#059669';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy); ctx.lineTo(px, cy);
+            ctx.stroke();
+
+            // Garis Tinggi (sin)
+            ctx.strokeStyle = '#e11d48';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(px, cy); ctx.lineTo(px, py);
+            ctx.stroke();
+
+            // Jari-jari
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy); ctx.lineTo(px, py);
+            ctx.stroke();
+
+            // Titik Sudut
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.arc(px, py, 6, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // DOM Label Updates
+            document.getElementById('unitAngleText').textContent = `${currentAngle}°`;
+            document.getElementById('angleRadText').textContent = `${(currentAngle / 180).toFixed(2)}π rad`;
+
+            const sinV = Math.sin(rad);
+            const cosV = Math.cos(rad);
+            const tanV = Math.tan(rad);
+
+            document.getElementById('liveCsc').textContent = Math.abs(sinV) < 1e-4 ? '∞' : (1 / sinV).toFixed(3);
+            document.getElementById('liveSec').textContent = Math.abs(cosV) < 1e-4 ? '∞' : (1 / cosV).toFixed(3);
+            document.getElementById('liveCot').textContent = Math.abs(tanV) < 1e-4 ? '∞' : (1 / tanV).toFixed(3);
+        }
+
+        function selectFinger(deg, n, btn) {
+            document.querySelectorAll('.finger-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const sinRes = document.getElementById('fingerSinResult');
+            const cosRes = document.getElementById('fingerCosResult');
+            const tanRes = document.getElementById('fingerTanResult');
+
+            if (n === 0) {
+                sinRes.innerHTML = "sin(0°) = ½√0 = 0";
+                cosRes.innerHTML = "cos(0°) = ½√4 = 1";
+                tanRes.innerHTML = "tan(0°) = 0";
+            } else if (n === 1) {
+                sinRes.innerHTML = "sin(30°) = ½√1 = ½";
+                cosRes.innerHTML = "cos(30°) = ½√3";
+                tanRes.innerHTML = "tan(30°) = ⅓√3";
+            } else if (n === 2) {
+                sinRes.innerHTML = "sin(45°) = ½√2";
+                cosRes.innerHTML = "cos(45°) = ½√2";
+                tanRes.innerHTML = "tan(45°) = 1";
+            } else if (n === 3) {
+                sinRes.innerHTML = "sin(60°) = ½√3";
+                cosRes.innerHTML = "cos(60°) = ½√1 = ½";
+                tanRes.innerHTML = "tan(60°) = √3";
+            } else if (n === 4) {
+                sinRes.innerHTML = "sin(90°) = ½√4 = 1";
+                cosRes.innerHTML = "cos(90°) = ½√0 = 0";
+                tanRes.innerHTML = "tan(90°) = Tidak Terdefinisi (∞)";
+            }
+
+            renderMathInElement(sinRes, { delimiters: [{left: '$', right: '$', display: false}] });
+            renderMathInElement(cosRes, { delimiters: [{left: '$', right: '$', display: false}] });
+            renderMathInElement(tanRes, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        let trigChart = null;
+
+        function initChart() {
+            const ctx = document.getElementById('chartTrig').getContext('2d');
+            const labels = [];
+            const sinData = [];
+            const cosData = [];
+            const tanData = [];
+
+            for (let deg = 0; deg <= 360; deg += 10) {
+                labels.push(`${deg}°`);
+                const rad = (deg * Math.PI) / 180;
+                sinData.push(Math.sin(rad));
+                cosData.push(Math.cos(rad));
+                
+                if (Math.abs(deg - 90) < 5 || Math.abs(deg - 270) < 5) {
+                    tanData.push(null);
+                } else {
+                    const t = Math.tan(rad);
+                    tanData.push(Math.abs(t) > 3 ? null : t);
+                }
+            }
+
+            trigChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'y = sin(x)',
+                            data: sinData,
+                            borderColor: '#e11d48',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'y = cos(x)',
+                            data: cosData,
+                            borderColor: '#059669',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'y = tan(x)',
+                            data: tanData,
+                            borderColor: '#d97706',
+                            borderWidth: 1.5,
+                            borderDash: [3, 3],
+                            tension: 0.2,
+                            pointRadius: 0,
+                            hidden: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { min: -2, max: 2 }
+                    }
+                }
+            });
+
+            document.getElementById('chkSin').addEventListener('change', e => { trigChart.setDatasetVisibility(0, e.target.checked); trigChart.update(); });
+            document.getElementById('chkCos').addEventListener('change', e => { trigChart.setDatasetVisibility(1, e.target.checked); trigChart.update(); });
+            document.getElementById('chkTan').addEventListener('change', e => { trigChart.setDatasetVisibility(2, e.target.checked); trigChart.update(); });
+
+            document.getElementById('sliderAmp').addEventListener('input', e => {
+                const amp = parseFloat(e.target.value);
+                document.getElementById('ampDisplay').textContent = amp;
+                trigChart.data.datasets[0].data = sinData.map(v => v !== null ? v * amp : null);
+                trigChart.data.datasets[1].data = cosData.map(v => v !== null ? v * amp : null);
+                trigChart.update();
+            });
+        }
+
+        const guidedPracticeData = [
+            {
+                id: 1,
+                title: "Latihan Terbimbing 1: Menghitung Nilai Sudut Non-Istimewa",
+                problem: "Hitunglah nilai eksak dari $\\cos(105^\\circ)$ dengan menggunakan rumus selisih/penjumlahan sudut!",
+                hints: [
+                    "<strong>Petunjuk Langkah 1:</strong> Pecah sudut $105^\\circ$ menjadi penjumlahan dua sudut istimewa, yaitu $(60^\\circ + 45^\\circ)$.",
+                    "<strong>Petunjuk Langkah 2:</strong> Gunakan rumus $\\cos(A + B) = \\cos A \\cos B - \\sin A \\sin B$.",
+                    "<strong>Petunjuk Langkah 3:</strong> Substitusi nilai: $\\cos(60^\\circ) = \\frac{1}{2}$, $\\cos(45^\\circ) = \\frac{1}{2}\\sqrt{2}$, $\\sin(60^\\circ) = \\frac{1}{2}\\sqrt{3}$, $\\sin(45^\\circ) = \\frac{1}{2}\\sqrt{2}$."
+                ],
+                solution: "<strong>Jawaban Akhir:</strong><br>$\\cos(105^\\circ) = \\left(\\frac{1}{2}\\right)\\left(\\frac{1}{2}\\sqrt{2}\\right) - \\left(\\frac{1}{2}\\sqrt{3}\\right)\\left(\\frac{1}{2}\\sqrt{2}\\right) = \\mathbf{\\frac{1}{4}(\\sqrt{2} - \\sqrt{6})}$. "
+            },
+            {
+                id: 2,
+                title: "Latihan Terbimbing 2: Sederhanakan Identitas Trigonometri",
+                problem: "Sederhanakan bentuk pecahan $\\frac{1 - \\sin^2 x}{\\cos x}$!",
+                hints: [
+                    "<strong>Petunjuk Langkah 1:</strong> Ingat identitas Pythagoras utama: $\\sin^2 x + \\cos^2 x = 1$.",
+                    "<strong>Petunjuk Langkah 2:</strong> Ubah pembilang $(1 - \\sin^2 x)$ menjadi $\\cos^2 x$.",
+                    "<strong>Petunjuk Langkah 3:</strong> Bagi $\\frac{\\cos^2 x}{\\cos x}$."
+                ],
+                solution: "<strong>Jawaban Akhir:</strong><br>$\\frac{1 - \\sin^2 x}{\\cos x} = \\frac{\\cos^2 x}{\\cos x} = \\mathbf{\\cos x}$."
+            }
+        ];
+
+        function renderGuidedPractice() {
+            const container = document.getElementById('guidedPracticeContainer');
+            container.innerHTML = guidedPracticeData.map((item, idx) => `
+                <div class="p-5 bg-white rounded-xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                        <h4 class="font-bold text-sm text-slate-800">${item.title}</h4>
+                        <span class="text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold">Step-by-Step</span>
+                    </div>
+
+                    <p class="text-xs text-slate-700 leading-relaxed font-medium">${item.problem}</p>
+
+                    <!-- Hint Step Buttons -->
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap gap-2">
+                            ${item.hints.map((_, hIdx) => `
+                                <button onclick="toggleHint(${idx}, ${hIdx})" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-sky-50 hover:border-sky-300 text-xs font-semibold text-slate-700 transition">
+                                    <i class="fa-solid fa-lightbulb text-amber-500"></i> Petunjuk ${hIdx + 1}
+                                </button>
+                            `).join('')}
+                            <button onclick="toggleSolution(${idx})" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition">
+                                <i class="fa-solid fa-check"></i> Cek Solusi Akhir
+                            </button>
+                        </div>
+
+                        <!-- Hint Display Boxes -->
+                        <div class="space-y-2 mt-2">
+                            ${item.hints.map((hintText, hIdx) => `
+                                <div id="hint_${idx}_${hIdx}" class="hidden p-3 rounded-lg bg-sky-50 border border-sky-200 text-xs text-sky-900">
+                                    ${hintText}
+                                </div>
+                            `).join('')}
+                            <div id="solution_${idx}" class="hidden p-3.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 font-mono">
+                                ${item.solution}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            renderMathInElement(container, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        function toggleHint(qIdx, hIdx) {
+            const el = document.getElementById(`hint_${qIdx}_${hIdx}`);
+            el.classList.toggle('hidden');
+            renderMathInElement(el, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        function toggleSolution(qIdx) {
+            const el = document.getElementById(`solution_${qIdx}`);
+            el.classList.toggle('hidden');
+            renderMathInElement(el, { delimiters: [{left: '$', right: '$', display: false}] });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWarmup();
+            initUnitCircleCanvas();
+            initChart();
+            renderGuidedPractice();
+
+            // Render math equations site-wide
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</body>
+</html>
